@@ -21,7 +21,7 @@ function BookDetails(props) {
 
       <p>Rating: {props.oneBook.rating}/10</p>
 
-      <a class="return-button" href="/books">
+      <a className="return-button" href="/books">
         Return
       </a>
     </Layout>

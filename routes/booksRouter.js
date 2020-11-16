@@ -34,7 +34,6 @@ booksRouter.get("/edit", (req, res, next) => {
 
   Book.findById(bookid)
     .then((oneBook) => {
-      console.log("oneBook", oneBook);
       const props = { oneBook: oneBook };
       res.render("EditBook", props);
     })
@@ -63,8 +62,6 @@ booksRouter.get("/details/:bookId", (req, res, next) => {
     .populate("authors")
     .then((oneBook) => {
       const props = { oneBook: oneBook };
-
-      console.log("props.oneBook.authors", props.oneBook.authors);
 
       res.render("BookDetails", props);
     })
