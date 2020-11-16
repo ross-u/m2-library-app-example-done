@@ -6,27 +6,35 @@
 
 ## Learning Goal
 
-The purpose of this mini project is building a server-side rendered app from scratch.
+The purpose of this mini project exercise is creating a server-side rendered application from scratch.
 
-Database will be implemented with `mongoose` and the templating will be done with `express-react-views` view engine.
+Our database will be implemented using `mongoose` and the server-side rendering will be done with `express-react-views` view engine.
 
 The main purpose of the exercise is consolidating the knowledge acquired during the last few days.
 
+
+
 #### What/How
 
-You will be working on this exercise together with another colleague, but on separate laptops following the steps outlined in this README.
+You will be working on this exercise together with another colleague, but on the separate laptops following the steps outlined in this README.
 
 Check often with your partner so that you are working on the same task and helping each other. If one of you is behind on one task, the person who is ahead should help so that you can overcome any blockers together.
 
-Exercise is done only when both you and your partner as a pair successfully finish all the tasks.
+Exercise is done only when both you and your partner as a pair successfully finish all the steps.
 
 <br>
+
+#### Important
 
 Take time to thoroughly read all of the steps, focusing on both written instaructions and code example details.
 
 We suggest that you write/type the code of the entire application on your own and restrain from copy/pasting the examples. The main idea is to practice implementing the entire application from scratch. Writting/typing all of the code will give you the chance to strenghten your muscle memory and it as well forces you to read and understand the code that you are writting. What is the better way to learn than doing it on your own? :muscle:
 
+
+
 <br>
+
+
 
 <h2 style="background: cornflowerblue; margin-top: 20px">1</h2>
 
@@ -36,15 +44,19 @@ During this module, we learned how to build our backend using **NodeJS** with **
 
 But, sometimes layering all these parts takes to much time, and doing everything “manually” when starting each project can be overwhelming and such repetitive work. And we as developers don’t like to spend time on the things that we need to repeat all over again, right? :wink: That’s why we will start using the application generator tool, **express-generator**, which will help us to quickly create the part of the initial application skeleton.
 
+
+
 <br>
 
 ### Generators
 
-A generator is a **program that helps to create other application programs which can run on a particular platform**
+A generator is a **program that helps to create other application programs which can run on a particular platform**.
 
-#### [npm express-generator](https://www.npmjs.com/package/express-generator)
 
-#### [ExpressJS docs - generator](https://expressjs.com/en/starter/generator.html)
+
+##### [ExpressJS docs - Express application generator](https://expressjs.com/en/starter/generator.html)
+
+
 
 #### Create the project using `express-generator`
 
@@ -56,17 +68,23 @@ npx express-generator --no-view 00-library-app
 cd 00-library-app
 ```
 
+
+
 <br>
 
 <h2 style="background: cornflowerblue; margin-top: 20px">2</h2>
 
 ### Some dependencies are automatically included
 
-`express-generator` creates a skeleton and a `package.json` file for us. Notice the `bin/www.js` file, which hods a file that is responsible for starting the server and listening on events that happen with the server.
+Running the `express-generator` creates a skeleton and a `package.json` file for us. Notice the `bin/www.js` file, which holds a file that is responsible for starting the server and listening on events that happen with the server. Take some time and take a look at it.
+
+
+
+#### Install the basic dependencies 
 
 Before running the server we have to run `npm install` to tell `npm` to install all the dependencies added by `express-generator` in the `package.json`.
 
-#### Install the dependencies
+
 
 ```bash
 # Install all of the dependencies included by express-generator
@@ -76,7 +94,11 @@ npm install
 npm install --save-dev nodemon
 ```
 
+
+
 <br>
+
+
 
 #### Add the command alias for `nodemon`
 
@@ -99,16 +121,20 @@ mkdir views/ models/
 touch views/Layout.jsx views/Home.jsx views/Books.jsx
 ```
 
+
+
 <br>
 
 #### Remove the `index.html` file
 
-By default Express automatically serves the `index.html` file located in the `public/` folder. Ee should remove it as we will be rendering our home page using `Home.jsx` template.
+By default Express automatically serves the `index.html` file located in the `public/` folder. We should therefore remove it as we will be rendering our custom home page using the `Home.jsx` template instead.
 
 ```bash
 # Remove the index.html file
 rm public/index.html
 ```
+
+
 
 <br>
 
@@ -117,6 +143,8 @@ rm public/index.html
 ```bash
  npm run start:dev
 ```
+
+
 
 <br>
 
@@ -152,35 +180,35 @@ After finishing with the above steps, your project structure should look like th
  ┗ 📜package.json
 ```
 
-- **bin**
-
+- **`bin`**
   - _www_ - contains our server configuration. `port` setting , **error** handlers in case we cannot start the server.
 
-- **app.js** - has our application’s main configuration, like a database connection and everything we need to set to Express (static files, routes).
+- **`app.js**` - has our application’s main configuration, like a database connection and everything we need to set to Express (static files, routes).
 
-- **package.json** - has every dependency we will need.
+- **`package.json`** - has every dependency we will need.
 
-- **models** - the folder where you will add Mongoose models files.
+- **`models/`** - the folder where you will add Mongoose models files.
 
-- **routes**
+- **`routes/ `** -  folder used to store the router files containing the routing logic.
 
-  - _index.js_ - the route configuration, by default, is set for the `/` route.
-
-- **views** - the folder containing all the default views/templates. All of them are using JSX
-
+- **`views/`** - the folder containing all the default views/templates. All of them are using JSX
   - _Home.jsx_ - the view that will be rendered when navigating to the root.
 
   - _Layout.jsx_ - a layout file created by default.
 
-- **public** - a folder to store all our static files.
+- **`public/`** - a folder to store all our static files.
 
 In the `app.js`the basic set up is already done and all static files are served from public folder.
+
+
 
 <br>
 
 <h2 style="background: cornflowerblue; margin-top: 20px">4</h2>
 
 #### Install `mongoose` , `dotenv` and the view engine and configure them
+
+
 
 ```bash
 # Additionaly install the view engine dependencies
@@ -190,11 +218,13 @@ npm install express-react-views react react-dom
 npm install --save mongoose dotenv
 ```
 
+
+
 <br>
 
 #### Create `.env` file
 
-Create the `.env` file and add the `PORT` variable:
+Create the `.env` file and add the `PORT` variable.
 
 ```bash
 touch .env
@@ -206,13 +236,17 @@ touch .env
 PORT=3000
 ```
 
+
+
 <br>
 
 #### Add the view engine middleware and the database connection
 
-In this step we will add `dotenv` and configure it, as well as adding the `mongoose` connection and all the other middleware our app needs.
+In this step we will require the `dotenv` and configure it, as well as adding the `mongoose` connection and all the other middleware our server app needs.
 
-You should add the below content to the already existing code in `app.js`.
+You should add the below content to the already existing code in `app.js`. 
+
+
 
 ##### `app.js`
 
@@ -255,11 +289,17 @@ app.use(express.static(__dirname + "/public"));
 // ...
 ```
 
+
+
 <br>
 
 <h2 style="background: cornflowerblue; margin-top: 20px">5</h2>
 
-#### Create the JSX Layout component
+
+
+#### Create the `Layout.jsx` component
+
+
 
 ##### `views/Layout.jsx`
 
@@ -282,9 +322,13 @@ function Layout(props) {
 module.exports = Layout;
 ```
 
+
+
 <br>
 
-#### Create the JSX Home view
+#### Create the  `Home.jsx` view
+
+
 
 ##### `views/Home.jsx`
 
@@ -303,6 +347,8 @@ function Home() {
 module.exports = Home;
 ```
 
+
+
 <br>
 
 <h2 style="background: cornflowerblue; margin-top: 20px">6</h2>
@@ -311,9 +357,13 @@ module.exports = Home;
 
 During this project we will be follwing the best practices and striving to make our server-side code as modular as possible.
 
-This means that our server logic that in the past lectures and LABs we used to write only in the `app.js` will now be separated in few modules.
+In the previous lectures and LABs we used to write our server logic only in the `app.js` file, but following the best practices we will now separate it in few modules.
 
-We do this to make our code cleaner, easier to navigate and in order to have a clear separation of concerns/responsibilities between files.
+We do this to make our code cleaner, easier to navigate and to achieve the separation of concerns/responsibilities between files.
+
+
+
+
 
 #### Using routers
 
@@ -322,6 +372,10 @@ Our `app.js` will be receiving all of the incoming requests. It has middleware t
 We will be handling the routes logic inside of these router files.
 
 First we need to slightly edit the code created by the `express-generator` and add our code instead.
+
+
+
+<br>
 
 #### Create the `booksRouter`
 
